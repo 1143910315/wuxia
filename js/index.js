@@ -1,6 +1,3 @@
-setTimeout(function () {
-	process.style.width="20%";
-},2000);
 var shichenshuju={
 	"子时":{"start":125,"stop":130},
 	"丑时":{"start":130,"stop":135},
@@ -14,4 +11,13 @@ var shichenshuju={
 	"酉时":{"start":60,"stop":95},
 	"戌时":{"start":95,"stop":115},
 	"亥时":{"start":115,"stop":125}
-}
+};
+setTimeout(function() {
+	var date=new Date();
+	var fen=date.getHours()%4*60+date.getMinutes();
+	for (var i in shichenshuju) {
+		if (fen>=shichenshuju[i].start&&fen<=shichenshuju[i].stop) {
+			shichen.innerHTML=i+"<br \>剩余"+(shichenshuju[i].stop-fen)+"分钟<br \>已过"+(fen-shichenshuju[i].start)+"分钟<br \>总共"+(shichenshuju[i].stop-shichenshuju[i].start)+"分钟";
+		}
+	}
+}, 1000);
